@@ -9,7 +9,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
  *  <PlaylistDialog open={open} handleClose={handleClose} addPlaylist={addPlaylist} />
  * )
  * @param {{open: boolean, handleClose: function, addPlaylist: function}} props props passed to the PlaylsitDialog Component.
- * @returns <PlaylistDialog props={...} />
+ * @returns <PlaylistDialog props={"*"} />
  */
 const PlaylistDialog = ({ open, handleClose, addPlaylist }) => {
     const [state, setState] = useState('');

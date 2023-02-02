@@ -8,11 +8,6 @@ import axios from "axios";
  */
 
 /**
- * api key
- * @property {string} api_key
- */
-
-/**
  * getPlaylist function to fetch the videos of provided playlist id
  * @param {string} playlistID playlist id to fetch the videos of that playlist using this id
  * @param {string} pageToken pageToken to fetch others videos expect 50 videos fetched at the first call
@@ -24,7 +19,6 @@ import axios from "axios";
 const getPlaylist = async (playlistID, pageToken='', result=[]) => {
     /**
      * api_key for the youtube v3 api service.
-     * @type {string} api_key 
      */
     const api_key = import.meta.env.VITE_YOUTUBE_API_KEY;
 
