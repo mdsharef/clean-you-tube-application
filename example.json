@@ -1,0 +1,51 @@
+
+{
+    "kind":"youtube#playlistItem",
+    "etag":"6PQNK_RQwd9D0zF7yOZ5TofLIl8","id":"UExfWHh1WnFOMHhWRDBvcC1RREVneVhGQTRmUlBDaHZrbC41NkI0NEY2RDEwNTU3Q0M2",
+    "snippet":{
+        "publishedAt":"2022-03-21T11:48:56Z",
+        "channelId":"UCrmHQdRbYKFsB602Duho4Tw",
+        "title":"0. Full-stack Army - Welcome | Decision-Making Video | Complete MERN Stack Journey in Bangla",
+        "description":"Full-stack Army - Welcome\nWith this video, we are going to start our journey as a full-stack / MERN stack developer. This is going to be the most advanced MERN stack series freely available on youtube. No videos in this series will be recorded, you will get recordings of our live classes. In this video, we have just discussed why we decide to go with the full-stack army course.\n\nPlaylist:\nFull-stack Army - Complete MERN Stack Journey in Bangla\nhttps://www.youtube.com/playlist?list=PL_XxuZqN0xVD0op-QDEgyXFA4fRPChvkl\nGithub: https://github.com/mrhm-dev/full-stack-army\nFacebook Group: https://www.facebook.com/groups/stacklearner\n\n\nডোনেশন এবং ব্রান্ড প্লেসমেন্ট সম্পর্কে বিস্তারিত জানতে নিচের ফর্মের লিংকে ভিসিট করুন। \nLink: https://forms.gle/vqmjWdpf6BvQZA1SA\n\nআমাদের সাথে যোগাযোগ করুনঃ  \n---------------------------------------------------\nEmail: support@stacklearner.com\nফেসবুক পেজঃ https://fb.me/stacklearner \nফেসবুক গ্রুপঃ https://fb.com/groups/stacklearner \nLinkedIn পেজঃ https://linkedin.com/company/stacklearner \nTwitter: https://twitter.com/stacklearner\nInstagram: https://instagram.com/stacklearner",
+        "thumbnails":{
+            "default":{
+                "url":"https://i.ytimg.com/vi/ewBBT6Iph0M/default.jpg",
+                "width":120,
+                "height":90
+            },
+            "medium":{
+                "url":"https://i.ytimg.com/vi/ewBBT6Iph0M/mqdefault.jpg",
+                "width":320,
+                "height":180
+            },
+            "high":{
+                "url":"https://i.ytimg.com/vi/ewBBT6Iph0M/hqdefault.jpg",
+                "width":480,
+                "height":360
+            },
+            "standard":{
+                "url":"https://i.ytimg.com/vi/ewBBT6Iph0M/sddefault.jpg",
+                "width":640,
+                "height":480
+            },
+            "maxres":{
+                "url":"https://i.ytimg.com/vi/ewBBT6Iph0M/maxresdefault.jpg",
+                "width":1280,
+                "height":720
+            }
+        },
+        "channelTitle":"Stack Learner",
+        "playlistId":"PL_XxuZqN0xVD0op-QDEgyXFA4fRPChvkl",
+        "position":0,
+        "resourceId":{
+            "kind":"youtube#video",
+            "videoId":"ewBBT6Iph0M"
+        },
+        "videoOwnerChannelTitle":"Stack Learner",
+        "videoOwnerChannelId":"UCrmHQdRbYKFsB602Duho4Tw"
+    },
+    "contentDetails":{
+        "videoId":"ewBBT6Iph0M",
+        "videoPublishedAt":"2022-03-21T12:59:42Z"
+    }
+}
