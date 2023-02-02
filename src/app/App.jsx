@@ -1,7 +1,8 @@
-import { useEffect } from "react";
-import usePlaylists from "../hooks/usePlaylists";
+import CssBaseline from '@mui/material/CssBaseline';
+import Navbar from '../components/navbar';
 
 /**
+ * App Component. This is the root Component of this application.
  * @component
  * @example
  * return (
@@ -10,15 +11,13 @@ import usePlaylists from "../hooks/usePlaylists";
  * @returns <App />
  */
 const App = () => {
-    const { getVideosByPlaylistID, playlists } = usePlaylists()
-    useEffect(() => {
-        getVideosByPlaylistID('PL_XxuZqN0xVD0op-QDEgyXFA4fRPChvkl');
-    }, []);
-
-    console.log(playlists);
-
     return (
-        <div></div>
+        <>
+            <CssBaseline />
+            <div>
+                <Navbar />
+            </div>
+        </>
     )
 };
 

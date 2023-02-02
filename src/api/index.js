@@ -11,7 +11,6 @@ import axios from "axios";
  * api key
  * @property {string} api_key
  */
-const api_key = 'AIzaSyAjCmj_k0byqY1birpMbMGPBEoZaesRjlU'
 
 /**
  * getPlaylist function to fetch the videos of provided playlist id
@@ -21,8 +20,14 @@ const api_key = 'AIzaSyAjCmj_k0byqY1birpMbMGPBEoZaesRjlU'
  * @returns {Array} result containing the videos of the playlist
  * @example
  * getPlaylist(playlist)
- */
+*/
 const getPlaylist = async (playlistID, pageToken='', result=[]) => {
+    /**
+     * api_key for the youtube v3 api service.
+     * @type {string} api_key 
+     */
+    const api_key = import.meta.env.VITE_YOUTUBE_API_KEY;
+
     /**
      * URL for fetching the videos of provided playlist id
      */

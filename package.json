@@ -10,6 +10,9 @@
     "docs": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.7",
     "axios": "^1.2.6",
     "jsdoc": "^4.0.0",
     "react": "^18.2.0",

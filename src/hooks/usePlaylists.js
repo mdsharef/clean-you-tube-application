@@ -10,14 +10,23 @@ import getPlaylist from "../api";
 
 /**
  * usePlaylists hooks
- * @returns {object}
+ * @returns {{
+ *      playlists, 
+ *      favouritePlaylists, 
+ *      recentPlaylists, 
+ *      error, 
+ *      loading, 
+ *      addPlaylist,
+ *      addToFavouritePlaylists, 
+ *      addToRecentPlaylists,
+ * }}
  * @example
  * usePlaylists();
  * return({ 
  *  playlists: state.playlists,
  * favouritePlaylists: getPlaylistsByIds(state.favouritePlaylists),
  * recentPlaylists: getPlaylistsByIds(state.recentPlaylists),
- * getVideosByPlaylistID,
+ * addPlaylist,
  * addToFavouritePlaylists,
  * addToRecentPlaylists,
  * })
@@ -30,15 +39,17 @@ const usePlaylists = () => {
         playlists: {},
         recentPlaylists: [],
         favouritePlaylists: [],
-    })
+    });
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     /**
-     * getVideosByPlaylistID function to fetch videos of provided playlistID and add them to a new playlist to the state
+     * addPlaylist function to fetch videos of provided playlistID and add them to a new playlist to the state
      * @param {string} playlistID playlistID to add the result, getting through call getPlaylist function, to the state
      * @example
-     * addPlaylistByID(playlistID)
+     * addPlaylist(playlistID)
      */
-    const getVideosByPlaylistID = async (playlistID, refresh=false) => {
+    const addPlaylist = async (playlistID, refresh=false) => {
         /**
          * Cheak Whether the playlist is already existed and it's not the refresh request
          */
@@ -46,11 +57,17 @@ const usePlaylists = () => {
             return;
         }
 
-        /**
-         * playlist videos
-         * @property {Array} result
-         */
-        let result = await getPlaylist(playlistID);
+        setLoading(true);
+        let result;
+
+        try {
+            result = await getPlaylist(playlistID); 
+            setError('');
+        } catch (e) {
+            setError(e.response?.data?.error?.message || 'Something went wrong!')
+        } finally {
+            setLoading(false);
+        }
 
         /**
          * storing the channelTitle and channelID mapping the result
@@ -59,17 +76,6 @@ const usePlaylists = () => {
          */
         let cid, ct;
 
-        /**
-         * mapping result array and curtailing some properties of each item and storing channelTitle and channelID into individulal variable
-         * @property {Array} result making an array of object containing neccessary property for each item
-         * @example
-         * return {
-         *  title,
-         *  description,
-         *  thumbnail,
-         *  contentDetails
-         * }
-         */
         result = result.map(item => {
             const {
                 channelId,
@@ -94,16 +100,6 @@ const usePlaylists = () => {
             }
         })
 
-        /**
-         * setState the playlists object
-         * @example
-         * return {
-         *  playlistID,
-         *  items,
-         *  channelID,
-         *  channelTitle
-         * }
-         */
         setState((prev) => ({
             ...prev,
             playlists: {
@@ -153,7 +149,9 @@ const usePlaylists = () => {
         playlists: state.playlists,
         favouritePlaylists: getPlaylistsByIds(state.favouritePlaylists),
         recentPlaylists: getPlaylistsByIds(state.recentPlaylists),
-        getVideosByPlaylistID,
+        error,
+        loading,
+        addPlaylist,
         addToFavouritePlaylists,
         addToRecentPlaylists,
     }

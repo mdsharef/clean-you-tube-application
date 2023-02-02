@@ -1,5 +1,20 @@
 {
     "application": {
         "title": "Clean YouTube Application"
+    },
+    "app": {
+        "title": "App Component"
+    },
+    "api": {
+        "title": "Clean YouTube Api"
+    },
+    "navbar": {
+        "title": "Navbar Component"
+    },
+    "playlist-dialog": {
+        "title": "Add Playlist Dialog"
+    },
+    "usePlaylistsHook": {
+        "title": "usePlaylists hook"
     }
 }
