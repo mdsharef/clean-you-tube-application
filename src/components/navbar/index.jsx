@@ -12,7 +12,7 @@ import PlaylistDialog from "../playlist-dialog";
  * )
  * @returns <Navbar />
  */
-const Navbar = () => {
+const Navbar = ({ addPlaylist }) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -23,13 +23,13 @@ const Navbar = () => {
         setOpen(false);
     };
 
-    const addPlaylist = (playlistID) => {
-        console.log(playlistID);
+    const getPlaylist = (playlistID) => {
+        addPlaylist(playlistID);
     }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position='static' color='default' sx={{ py: 2 }}>
+            <AppBar position="fixed" color="default" sx={{ py: 2 }}>
                 <Container maxWidth='lg'>
                     <Toolbar>
                         <Stack sx={{ flexGrow: 1 }}>
@@ -41,7 +41,7 @@ const Navbar = () => {
                             </Typography>
                         </Stack>
                         <Button variant="contained" onClick={handleClickOpen}>Add Playlist</Button>
-                        <PlaylistDialog open={open} handleClose={handleClose} addPlaylist={addPlaylist} />
+                        <PlaylistDialog open={open} handleClose={handleClose} getPlaylist={getPlaylist} />
                     </Toolbar>
                 </Container>
             </AppBar>

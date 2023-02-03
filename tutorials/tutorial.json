@@ -16,5 +16,8 @@
     },
     "usePlaylistsHook": {
         "title": "usePlaylists hook"
+    },
+    "playlistCard": {
+        "title": "Playlist Card"
     }
 }

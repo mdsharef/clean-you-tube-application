@@ -58,60 +58,22 @@ const usePlaylists = () => {
         }
 
         setLoading(true);
-        let result;
 
         try {
-            result = await getPlaylist(playlistID); 
+            const playlist = await getPlaylist(playlistID);
+            setState((prev) => ({
+                ...prev,
+                playlists: {
+                    ...prev.playlists,
+                    [playlistID]: playlist
+                }
+            })); 
             setError('');
         } catch (e) {
             setError(e.response?.data?.error?.message || 'Something went wrong!')
         } finally {
             setLoading(false);
         }
-
-        /**
-         * storing the channelTitle and channelID mapping the result
-         * @property {string} cid channelID
-         * @property {string} ct channelTitle
-         */
-        let cid, ct;
-
-        result = result.map(item => {
-            const {
-                channelId,
-                title,
-                description,
-                thumbnails: {medium},
-                channelTitle,
-            } = item.snippet;
-
-            if(!cid) {
-                cid = channelId
-            };
-            if(!ct) {
-                ct = channelTitle
-            }
-
-            return {
-                title,
-                description,
-                thumbnail: medium,
-                contentDetails: item.contentDetails,
-            }
-        })
-
-        setState((prev) => ({
-            ...prev,
-            playlists: {
-                ...prev.playlists,
-                [playlistID]: {
-                    playlistID: playlistID,
-                    items: result,
-                    channelID: cid,
-                    channelTitle: ct,
-                }
-            }
-        }));
     };
 
     /**

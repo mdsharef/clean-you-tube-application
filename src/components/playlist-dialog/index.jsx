@@ -6,12 +6,12 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
  * @component
  * @example 
  * return (
- *  <PlaylistDialog open={open} handleClose={handleClose} addPlaylist={addPlaylist} />
+ *  <PlaylistDialog open={open} handleClose={handleClose} getPlaylist={getPlaylist} />
  * )
- * @param {{open: boolean, handleClose: function, addPlaylist: function}} props props passed to the PlaylsitDialog Component.
+ * @param {{open: boolean, handleClose: function, getPlaylist: function}} props props passed to the PlaylsitDialog Component.
  * @returns <PlaylistDialog props={"*"} />
  */
-const PlaylistDialog = ({ open, handleClose, addPlaylist }) => {
+const PlaylistDialog = ({ open, handleClose, getPlaylist }) => {
     const [state, setState] = useState('');
 
     const handleSubmit = (e) => {
@@ -20,7 +20,7 @@ const PlaylistDialog = ({ open, handleClose, addPlaylist }) => {
         if(!state) {
             alert('Please insert a valid playlistID or url');
         } else {
-            addPlaylist(state);
+            getPlaylist(state);
             setState('');
             handleClose();
         }

@@ -8,6 +8,11 @@ import axios from "axios";
  */
 
 /**
+ * api_key for the youtube v3 api service.
+ */
+const api_key = import.meta.env.VITE_YOUTUBE_API_KEY;
+
+/**
  * getPlaylist function to fetch the videos of provided playlist id
  * @param {string} playlistID playlist id to fetch the videos of that playlist using this id
  * @param {string} pageToken pageToken to fetch others videos expect 50 videos fetched at the first call
@@ -16,12 +21,7 @@ import axios from "axios";
  * @example
  * getPlaylist(playlist)
 */
-const getPlaylist = async (playlistID, pageToken='', result=[]) => {
-    /**
-     * api_key for the youtube v3 api service.
-     */
-    const api_key = import.meta.env.VITE_YOUTUBE_API_KEY;
-
+const getPlaylistItem = async (playlistID, pageToken='', result=[]) => {
     /**
      * URL for fetching the videos of provided playlist id
      */
@@ -32,10 +32,50 @@ const getPlaylist = async (playlistID, pageToken='', result=[]) => {
     result = [...result, ...data.items];
 
     if(data.nextPageToken) {
-        result = getPlaylist(playlistID, data.nextPageToken, result);
+        result = getPlaylistItem(playlistID, data.nextPageToken, result);
     }
 
     return result;
+}
+
+const getPlaylist = async (playlistID) => {
+    const URL = `https://youtube.googleapis.com/youtube/v3/playlists?key=${api_key}&part=snippet&maxResults=50&id=${playlistID}`;
+    
+    let { data } = await axios.get(URL);
+    const { 
+        channelId, 
+        title: playlistTitle, 
+        description: playlistDescription, 
+        thumbnails: {default: playlistThumbnail},
+        channelTitle
+    } = data?.items[0]?.snippet
+    
+    let playlistItems = await getPlaylistItem(playlistID);
+    
+    playlistItems = playlistItems.map(item => {
+        const {
+            title,
+            description,
+            thumbnails: {medium},
+        } = item.snippet;
+        
+        return {
+            title,
+            description,
+            thumbnail: medium,
+            contentDetails: item.contentDetails,
+        }
+    });
+
+    return {
+        playlistID: playlistID,
+        playlistItems,
+        channelID: channelId,
+        channelTitle: channelTitle,
+        playlistTitle: playlistTitle,
+        playlistDescription: playlistDescription,
+        playlistThumbnail: playlistThumbnail
+    }
 }
 
 export default getPlaylist;
