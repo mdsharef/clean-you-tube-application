@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: app/App.jsx</title>
+    <title>JSDoc: Source: components/playlist-card/index.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: app/App.jsx</h1>
+    <h1 class="page-title">Source: components/playlist-card/index.jsx</h1>
 
     
 
@@ -26,51 +26,50 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
-import Navbar from '../components/navbar';
-import PlaylistCard from '../components/playlist-card';
-import usePlaylists from '../hooks/usePlaylists';
+            <pre class="prettyprint source linenums"><code>import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 /**
- * App Component. This is the root Component of this application.
+ * PlaylistCard Component to show individual playlist
  * @component
  * @example
  * return (
- *      &lt;App />
+ *  &lt;PlaylistCard playlistThumbnail={playlistThumbnail} channelTitle={channelTitle} playlistTitle={playlistTitle} />
  * )
- * @returns &lt;App />
+ * @param {{playlistThumbnail: object, channelTitle: string, playlistTitle: string}} params [options]
+ * @returns &lt;PlaylistCard options={params}/>
  */
-const App = () => {
-    const { playlists, addPlaylist, error } = usePlaylists();
-    const playlistsArray = Object.values(playlists);
+const PlaylistCard = ({ playlistThumbnail, channelTitle, playlistTitle }) => {
 
-    return (
-        &lt;>
-            &lt;CssBaseline />
-            &lt;Container maxWidth='lg' sx={{ my: 16 }}>
-                &lt;Navbar addPlaylist={addPlaylist} />
-                {playlistsArray.length > 0 &amp;&amp; (
-                    &lt;Grid container alignItems='stretch'>
-                        {playlistsArray.map(item => (
-                            &lt;Grid item xs={12} md={6} lg={4} mb={2}>
-                                &lt;PlaylistCard
-                                    key={item.playlistID}
-                                    playlistThumbnail={item.playlistThumbnail}
-                                    channelTitle={item.channelTitle}
-                                    playlistTitle={item.playlistTitle}
-                                />
-                            &lt;/Grid>
-                        ))}
-                    &lt;/Grid>
-                )}
-            &lt;/Container>
-        &lt;/>
-    )
+  return (
+    &lt;Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', margin: 1 }}>
+      &lt;CardMedia
+        component="img"
+        image={playlistThumbnail.url}
+        alt={playlistTitle}
+      />
+      &lt;CardContent>
+        &lt;Typography variant="h6" color='text.primary'>
+          {playlistTitle.length > 50 ? `${playlistTitle.substr(0, 50)}...` : playlistTitle}
+        &lt;/Typography>
+        &lt;Typography variant='body2' color="text.secondary">
+            {channelTitle}
+        &lt;/Typography>
+      &lt;/CardContent>
+      &lt;Box sx={{ flexGrow: 1 }}>&lt;/Box>
+      &lt;CardActions disableSpacing>
+        &lt;Button>Play&lt;/Button>
+      &lt;/CardActions>
+    &lt;/Card>
+  );
 };
 
-export default App;</code></pre>
+export default PlaylistCard;</code></pre>
         </article>
     </section>
 

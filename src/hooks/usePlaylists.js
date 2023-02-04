@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getPlaylist from "../api";
+import storage from "../utils/Storage";
 
 /**
  * usePlaylists hooks module
@@ -7,6 +8,14 @@ import getPlaylist from "../api";
  * @example
  * import usePlaylists form '[filelocation]'
  */
+
+const STORAGE_KEY = 'cy__playlist__key';
+
+const INIT_STATE = {
+    playlists: {},
+    recentPlaylists: [],
+    favouritePlaylists: [],
+}
 
 /**
  * usePlaylists hooks
@@ -35,13 +44,23 @@ const usePlaylists = () => {
     /**
      * useState hook for containing all playlists
      */
-    const [state, setState] = useState({
-        playlists: {},
-        recentPlaylists: [],
-        favouritePlaylists: [],
-    });
+    const [state, setState] = useState({...INIT_STATE});
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const data = storage.get(STORAGE_KEY);
+
+        if(data) {
+            setState({...data});
+        }
+    }, []);
+
+    useEffect(() => {
+        if(state !== INIT_STATE) {
+            storage.save(STORAGE_KEY, state);
+        }
+    }, [state])
 
     /**
      * addPlaylist function to fetch videos of provided playlistID and add them to a new playlist to the state

@@ -1,13 +1,16 @@
+import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 /**
  * PlaylistCard Component to show individual playlist
+ * @component
  * @example
  * return (
  *  <PlaylistCard playlistThumbnail={playlistThumbnail} channelTitle={channelTitle} playlistTitle={playlistTitle} />
@@ -15,7 +18,7 @@ import Box from '@mui/material/Box';
  * @param {{playlistThumbnail: object, channelTitle: string, playlistTitle: string}} params [options]
  * @returns <PlaylistCard options={params}/>
  */
-const PlaylistCard = ({ playlistThumbnail, channelTitle, playlistTitle }) => {
+const PlaylistCard = ({ playlistID, playlistThumbnail, channelTitle, playlistTitle }) => {
 
   return (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', margin: 1 }}>
@@ -34,7 +37,13 @@ const PlaylistCard = ({ playlistThumbnail, channelTitle, playlistTitle }) => {
       </CardContent>
       <Box sx={{ flexGrow: 1 }}></Box>
       <CardActions disableSpacing>
-        <Button>Play</Button>
+        <Button component={Link} to={`/player/${playlistID}`} >
+          <Stack direction='row' spacing={1} alignItems='center'>
+            <Typography variant='body2' color={'primary'} fontWeight={600}>
+              Start Tutorial
+            </Typography>
+          </Stack>
+        </Button>
       </CardActions>
     </Card>
   );

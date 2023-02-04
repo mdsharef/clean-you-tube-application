@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { AppBar, Button, Stack, Toolbar, Typography } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { AppBar, Button, Link, Stack, Toolbar, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import PlaylistDialog from "../playlist-dialog";
 
@@ -33,12 +34,16 @@ const Navbar = ({ addPlaylist }) => {
                 <Container maxWidth='lg'>
                     <Toolbar>
                         <Stack sx={{ flexGrow: 1 }}>
-                            <Typography variant='h4'>
-                                Clean YouTube
-                            </Typography>
-                            <Typography variant='body1'>
-                                By Adda
-                            </Typography>
+                            <Link component={RouterLink} to='/' sx={{ textDecoration: 'none' }}>
+                                <Typography variant='h4' color='text.primary'>
+                                    Clean YouTube
+                                </Typography>
+                            </Link>
+                            <Link href="https://github.com/mdsharef" target="_blank" sx={{ textDecoration: 'none' }}>
+                                <Typography variant='body1' color='text.secondary'>
+                                    By Adda
+                                </Typography>
+                            </Link>
                         </Stack>
                         <Button variant="contained" onClick={handleClickOpen}>Add Playlist</Button>
                         <PlaylistDialog open={open} handleClose={handleClose} getPlaylist={getPlaylist} />

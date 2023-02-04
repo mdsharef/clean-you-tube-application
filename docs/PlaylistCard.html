@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: usePlaylists</title>
+    <title>JSDoc: Class: PlaylistCard</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: usePlaylists</h1>
+    <h1 class="page-title">Class: PlaylistCard</h1>
 
     
 
@@ -28,92 +28,20 @@
 
 <header>
     
+        <h2><span class="attribs"><span class="type-signature"></span></span>PlaylistCard<span class="signature">(params)</span><span class="type-signature"> &rarr; {params}</span></h2>
+        
+    
 </header>
 
 <article>
     <div class="container-overview">
     
         
-            <div class="description"><p>usePlaylists hooks module</p></div>
-        
-
-        
-
-
-<dl class="details">
 
     
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hooks_usePlaylists.js.html">hooks/usePlaylists.js</a>, <a href="hooks_usePlaylists.js.html#line4">line 4</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-            <h3>Example</h3>
-            
-    <pre class="prettyprint"><code>import usePlaylists form '[filelocation]'</code></pre>
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~usePlaylists"><span class="type-signature">(inner) </span>usePlaylists<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="PlaylistCard"><span class="type-signature"></span>new PlaylistCard<span class="signature">(params)</span><span class="type-signature"> &rarr; {params}</span></h4>
     
 
     
@@ -121,7 +49,7 @@
 
 
 <div class="description">
-    <p>usePlaylists hooks</p>
+    <p>PlaylistCard Component to show individual playlist</p>
 </div>
 
 
@@ -132,6 +60,55 @@
 
 
 
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>[options]</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
 
 
 
@@ -165,7 +142,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hooks_usePlaylists.js.html">hooks/usePlaylists.js</a>, <a href="hooks_usePlaylists.js.html#line34">line 34</a>
+        <a href="components_playlist-card_index.jsx.html">components/playlist-card/index.jsx</a>, <a href="components_playlist-card_index.jsx.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -193,7 +170,23 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <PlaylistCard options=/>
+</div>
 
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">params</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -202,11 +195,27 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>usePlaylists();return({  playlists: state.playlists,favouritePlaylists: getPlaylistsByIds(state.favouritePlaylists),recentPlaylists: getPlaylistsByIds(state.recentPlaylists),addPlaylist,addToFavouritePlaylists,addToRecentPlaylists,})</code></pre>
+    <pre class="prettyprint"><code>return ( &lt;PlaylistCard playlistThumbnail={playlistThumbnail} channelTitle={channelTitle} playlistTitle={playlistTitle} />)</code></pre>
 
 
 
-        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     

@@ -1,9 +1,10 @@
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from '../components/navbar';
-import PlaylistCard from '../components/playlist-card';
 import usePlaylists from '../hooks/usePlaylists';
+import ShowPlaylists from '../pages/home';
+import NotFound from '../pages/pageNotFound';
+import PlayerPage from '../pages/player';
 
 /**
  * App Component. This is the root Component of this application.
@@ -16,30 +17,18 @@ import usePlaylists from '../hooks/usePlaylists';
  */
 const App = () => {
     const { playlists, addPlaylist, error } = usePlaylists();
-    const playlistsArray = Object.values(playlists);
 
     return (
-        <>
+        <BrowserRouter>
             <CssBaseline />
-            <Container maxWidth='lg' sx={{ my: 16 }}>
-                <Navbar addPlaylist={addPlaylist} />
-                {playlistsArray.length > 0 && (
-                    <Grid container alignItems='stretch'>
-                        {playlistsArray.map(item => (
-                            <Grid item xs={12} md={6} lg={4} mb={2}>
-                                <PlaylistCard
-                                    key={item.playlistID}
-                                    playlistThumbnail={item.playlistThumbnail}
-                                    channelTitle={item.channelTitle}
-                                    playlistTitle={item.playlistTitle}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                )}
-            </Container>
-        </>
-    )
+            <Navbar addPlaylist={addPlaylist} />
+            <Routes>
+                <Route path='/' element={<ShowPlaylists playlistsArray={Object.values(playlists)} />} />
+                <Route path='/player/:playlistID' element={<PlayerPage playlists={playlists} />} />
+                <Route path='*' element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+    );
 };
 
 export default App;
