@@ -68,13 +68,13 @@ const getPlaylist = async (playlistID) => {
     });
 
     return {
-        playlistID: playlistID,
+        playlistID,
         playlistItems,
-        channelID: channelId,
-        channelTitle: channelTitle,
-        playlistTitle: playlistTitle,
-        playlistDescription: playlistDescription,
-        playlistThumbnail: playlistThumbnail
+        channelId,
+        channelTitle,
+        playlistTitle,
+        playlistDescription,
+        playlistThumbnail
     }
 }
 

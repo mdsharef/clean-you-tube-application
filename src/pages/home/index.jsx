@@ -1,4 +1,5 @@
 import { Container, Grid } from "@mui/material"
+import { useStoreState } from "easy-peasy";
 import PlaylistCard from "../../components/playlist-card"
 
 /**
@@ -8,7 +9,10 @@ import PlaylistCard from "../../components/playlist-card"
  * @param {Array} playlistsArray 
  * @returns (<ShowPlaylists playlistsArray={playlistsArray} />)
  */
-const ShowPlaylists = ({ playlistsArray }) => {
+const ShowPlaylists = () => {
+    const playlists = useStoreState(state => state.playlists.data);
+    const playlistsArray = Object.values(playlists);
+
     return(
         <Container maxWidth='lg' sx={{ my: 16 }}>
             {playlistsArray.length > 0 && (

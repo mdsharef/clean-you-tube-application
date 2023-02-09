@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Tutorial: usePlaylists hook</title>
+    <title>JSDoc: Source: pages/player/index.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,21 +17,50 @@
 
 <div id="main">
 
-    <h1 class="page-title">Tutorial: usePlaylists hook</h1>
+    <h1 class="page-title">Source: pages/player/index.jsx</h1>
 
+    
+
+
+
+    
     <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Box, Container, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
 
-<header>
-    
+/**
+ * @component PlayerPage
+ * @example
+ * return ( &lt;PlayerPage playlists={playlists} />)
+ */
+const PlayerPage = ({ playlists }) => {
+    const {playlistID} = useParams();
+    const playlist = playlists[playlistID];
+    console.log('current course ->', playlist);
 
-    <h2>usePlaylists hook</h2>
-</header>
+    if(!playlist) return;
 
-<article>
-    
-</article>
+    return (
+        &lt;Container maxWidth='lg' align='center' sx={{ my: 16 }}>
+            &lt;Box>
+                &lt;Typography variant='h4'>
+                    {playlist.playlistTitle}
+                &lt;/Typography>
+                &lt;Typography variant='body2'>
+                    {playlist.playlistDescription}
+                &lt;/Typography>
+            &lt;/Box>
+        &lt;/Container>
+    )
+};
 
-</section>
+export default PlayerPage;</code></pre>
+        </article>
+    </section>
+
+
+
 
 </div>
 

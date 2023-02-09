@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Tutorial: usePlaylists hook</title>
+    <title>JSDoc: Source: pages/home/index.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,21 +17,59 @@
 
 <div id="main">
 
-    <h1 class="page-title">Tutorial: usePlaylists hook</h1>
+    <h1 class="page-title">Source: pages/home/index.jsx</h1>
 
+    
+
+
+
+    
     <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Container, Grid } from "@mui/material"
+import PlaylistCard from "../../components/playlist-card"
 
-<header>
-    
+/**
+ * @component ShowPlaylists
+ * @example
+ * return (&lt;ShowPlaylists playlistsArray={playlistsArray} />);
+ * @param {Array} playlistsArray 
+ * @returns (&lt;ShowPlaylists playlistsArray={playlistsArray} />)
+ */
+const ShowPlaylists = ({ playlistsArray }) => {
+    return(
+        &lt;Container maxWidth='lg' sx={{ my: 16 }}>
+            {playlistsArray.length > 0 &amp;&amp; (
+                &lt;Grid container alignItems='stretch'>
+                    {playlistsArray.map(item => (
+                        &lt;Grid 
+                            key={item.playlistID}
+                            item 
+                            xs={12} 
+                            md={6} 
+                            lg={4} 
+                            mb={2}
+                        >
+                            &lt;PlaylistCard
+                                playlistID={item.playlistID}
+                                playlistThumbnail={item.playlistThumbnail}
+                                channelTitle={item.channelTitle}
+                                playlistTitle={item.playlistTitle}
+                            />
+                        &lt;/Grid>
+                    ))}
+                &lt;/Grid>
+            )}
+        &lt;/Container>
+    )
+};
 
-    <h2>usePlaylists hook</h2>
-</header>
+export default ShowPlaylists;</code></pre>
+        </article>
+    </section>
 
-<article>
-    
-</article>
 
-</section>
+
 
 </div>
 

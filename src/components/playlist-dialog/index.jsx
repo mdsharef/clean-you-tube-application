@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+import { useStoreActions } from "easy-peasy";
 
 /**
  * PlaylistDialog Component to add new playlist.
@@ -11,7 +12,9 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
  * @param {{open: boolean, handleClose: function, getPlaylist: function}} props props passed to the PlaylsitDialog Component.
  * @returns <PlaylistDialog props={"*"} />
  */
-const PlaylistDialog = ({ open, handleClose, getPlaylist }) => {
+const PlaylistDialog = ({ open, handleClose }) => {
+    const { playlists: { savePlaylist }, recents: { addRecents } } = useStoreActions(actions => actions);
+
     const [state, setState] = useState('');
 
     const handleSubmit = (e) => {
@@ -20,7 +23,8 @@ const PlaylistDialog = ({ open, handleClose, getPlaylist }) => {
         if(!state) {
             alert('Please insert a valid playlistID or url');
         } else {
-            getPlaylist(state);
+            savePlaylist({playlistID: state});
+            addRecents(state);
             setState('');
             handleClose();
         }

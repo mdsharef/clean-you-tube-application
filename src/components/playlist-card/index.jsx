@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useEffect, useState } from 'react';
+import { useStoreActions } from 'easy-peasy';
 
 /**
  * PlaylistCard Component to show individual playlist
@@ -18,7 +20,27 @@ import Button from '@mui/material/Button';
  * @param {{playlistThumbnail: object, channelTitle: string, playlistTitle: string}} params [options]
  * @returns <PlaylistCard options={params}/>
  */
-const PlaylistCard = ({ playlistID, playlistThumbnail, channelTitle, playlistTitle }) => {
+const PlaylistCard = ({ 
+  playlistID, 
+  playlistThumbnail, 
+  channelTitle, 
+  playlistTitle 
+}) => {
+  
+  const { addFavourite, removeFavourite } = useStoreActions(actions => actions.favourites);
+  const [isLoved, setIsLoved] = useState(false);
+
+  useEffect(()=> {
+    if(isLoved) {
+      addFavourite(playlistID);
+    } else {
+      removeFavourite(playlistID);
+    }
+  }, [isLoved])
+
+  const handleChange = () => {
+    setIsLoved(!isLoved);
+  }
 
   return (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', margin: 1 }}>
@@ -43,6 +65,11 @@ const PlaylistCard = ({ playlistID, playlistThumbnail, channelTitle, playlistTit
               Start Tutorial
             </Typography>
           </Stack>
+        </Button>
+        <Button onClick={handleChange}>
+          <Typography variant='body2' color={'primary'} fontWeight={600}>
+            {isLoved ? 'UnLove' : 'Love'}
+          </Typography>
         </Button>
       </CardActions>
     </Card>

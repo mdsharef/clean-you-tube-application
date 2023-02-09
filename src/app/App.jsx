@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from '../components/navbar';
-import usePlaylists from '../hooks/usePlaylists';
+// import usePlaylists from '../hooks/usePlaylists';
 import ShowPlaylists from '../pages/home';
 import NotFound from '../pages/pageNotFound';
 import PlayerPage from '../pages/player';
@@ -16,15 +16,13 @@ import PlayerPage from '../pages/player';
  * @returns <App />
  */
 const App = () => {
-    const { playlists, addPlaylist, error } = usePlaylists();
-
     return (
         <BrowserRouter>
             <CssBaseline />
-            <Navbar addPlaylist={addPlaylist} />
+            <Navbar />
             <Routes>
-                <Route path='/' element={<ShowPlaylists playlistsArray={Object.values(playlists)} />} />
-                <Route path='/player/:playlistID' element={<PlayerPage playlists={playlists} />} />
+                <Route path='/' element={<ShowPlaylists />} />
+                <Route path='/player/:playlistID' element={<PlayerPage />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>

@@ -13,7 +13,7 @@ import PlaylistDialog from "../playlist-dialog";
  * )
  * @returns <Navbar />
  */
-const Navbar = ({ addPlaylist }) => {
+const Navbar = () => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -23,10 +23,6 @@ const Navbar = ({ addPlaylist }) => {
     const handleClose = () => {
         setOpen(false);
     };
-
-    const getPlaylist = (playlistID) => {
-        addPlaylist(playlistID);
-    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -46,7 +42,7 @@ const Navbar = ({ addPlaylist }) => {
                             </Link>
                         </Stack>
                         <Button variant="contained" onClick={handleClickOpen}>Add Playlist</Button>
-                        <PlaylistDialog open={open} handleClose={handleClose} getPlaylist={getPlaylist} />
+                        <PlaylistDialog open={open} handleClose={handleClose} />
                     </Toolbar>
                 </Container>
             </AppBar>

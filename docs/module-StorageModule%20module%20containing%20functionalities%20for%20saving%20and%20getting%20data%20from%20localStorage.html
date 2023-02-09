@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: getPlaylist</title>
+    <title>JSDoc: Module: StorageModule module containing functionalities for saving and getting data from localStorage</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: getPlaylist</h1>
+    <h1 class="page-title">Module: StorageModule module containing functionalities for saving and getting data from localStorage</h1>
 
     
 
@@ -33,8 +33,6 @@
 <article>
     <div class="container-overview">
     
-        
-            <div class="description"><p>getPlaylist function module</p></div>
         
 
         
@@ -69,7 +67,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_index.js.html">api/index.js</a>, <a href="api_index.js.html#line3">line 3</a>
+        <a href="utils_Storage.js.html">utils/Storage.js</a>, <a href="utils_Storage.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -84,7 +82,7 @@
         
             <h3>Example</h3>
             
-    <pre class="prettyprint"><code>import getPlaylist from "[filelocation]";</code></pre>
+    <pre class="prettyprint"><code>import storage form 'fileLocation';</code></pre>
 
         
     
@@ -107,16 +105,26 @@
 
         
             
-<h4 class="name" id="~api_key"><span class="type-signature">(inner, constant) </span>api_key<span class="type-signature"></span></h4>
+<h4 class="name" id="~storage"><span class="type-signature">(inner, constant) </span>storage<span class="type-signature"> :Storage</span></h4>
 
 
 
 
 <div class="description">
-    <p>api_key for the youtube v3 api service.</p>
+    <p>creating an storage instane from Storage class</p>
 </div>
 
 
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Storage</span>
+
+
+        </li>
+    </ul>
 
 
 
@@ -151,7 +159,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_index.js.html">api/index.js</a>, <a href="api_index.js.html#line13">line 13</a>
+        <a href="utils_Storage.js.html">utils/Storage.js</a>, <a href="utils_Storage.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -171,37 +179,42 @@
     
 
     
-        <h3 class="subsection-title">Methods</h3>
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
 
         
-            
+                
+<h4 class="name" id="~Storage">Storage</h4>
 
-    
-
-    
-    <h4 class="name" id="~getPlaylistItem"><span class="type-signature">(async, inner) </span>getPlaylistItem<span class="signature">(playlistID, pageToken, result)</span><span class="type-signature"> &rarr; {Array}</span></h4>
-    
-
-    
 
 
 
 <div class="description">
-    <p>getPlaylist function to fetch the videos of provided playlist id</p>
+    <p>Storage</p>
 </div>
 
 
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Storage</span>
+
+
+        </li>
+    </ul>
 
 
 
 
 
+    <h5 class="subsection-title">Properties:</h5>
 
-    <h5>Parameters:</h5>
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -223,13 +236,13 @@
 
         <tr>
             
-                <td class="name"><code>playlistID</code></td>
+                <td class="name"><code>save</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">function</span>
 
 
             
@@ -239,20 +252,20 @@
 
             
 
-            <td class="description last"><p>playlist id to fetch the videos of that playlist using this id</p></td>
+            <td class="description last"></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>pageToken</code></td>
+                <td class="name"><code>get</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">function</span>
 
 
             
@@ -262,37 +275,12 @@
 
             
 
-            <td class="description last"><p>pageToken to fetch others videos expect 50 videos fetched at the first call</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>result</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>result to contain the result after calling the function</p></td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
-
-
 
 
 
@@ -326,7 +314,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_index.js.html">api/index.js</a>, <a href="api_index.js.html#line24">line 24</a>
+        <a href="utils_Storage.js.html">utils/Storage.js</a>, <a href="utils_Storage.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -341,51 +329,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>result containing the videos of the playlist</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>getPlaylist(playlist)</code></pre>
+    <pre class="prettyprint"><code>const object = new Storage();</code></pre>
 
 
 
-        
-    
-
+            
     
 
     

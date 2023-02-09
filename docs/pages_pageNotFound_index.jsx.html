@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Tutorial: usePlaylists hook</title>
+    <title>JSDoc: Source: pages/pageNotFound/index.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,21 +17,53 @@
 
 <div id="main">
 
-    <h1 class="page-title">Tutorial: usePlaylists hook</h1>
+    <h1 class="page-title">Source: pages/pageNotFound/index.jsx</h1>
 
+    
+
+
+
+    
     <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Link as RouterLink } from 'react-router-dom';
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
 
-<header>
-    
+/**
+ * @component NotFound
+ * @example
+ * return(&lt;NotFound />)
+ * @returns (&lt;NotFound />) The
+ */
+const NotFound = () => {
+    return (
+        &lt;Container maxWidth='lg' align='center' sx={{ my: 16 }}>
+            &lt;Box>
+                &lt;Typography variant="h3" color='Highlight'>
+                    OPS!
+                &lt;/Typography>
+                &lt;Typography variant="h4" color='GrayText'>
+                    Sorry, Page Not Found.
+                &lt;/Typography>
+                &lt;Link component={RouterLink} to='/' sx={{ textDecoration: 'underline' }}>
+                    &lt;Typography variant='body1' color='text.secondary'>
+                        Please, Back to Home Page!
+                    &lt;/Typography>
+                &lt;/Link>
+            &lt;/Box>
+        &lt;/Container>
+    )
+};
 
-    <h2>usePlaylists hook</h2>
-</header>
+export default NotFound;</code></pre>
+        </article>
+    </section>
 
-<article>
-    
-</article>
 
-</section>
+
 
 </div>
 

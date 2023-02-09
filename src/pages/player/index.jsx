@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
+import { useStoreState } from "easy-peasy";
 import { useParams } from "react-router-dom";
 
 /**
@@ -6,10 +7,9 @@ import { useParams } from "react-router-dom";
  * @example
  * return ( <PlayerPage playlists={playlists} />)
  */
-const PlayerPage = ({ playlists }) => {
-    const {playlistID} = useParams();
-    const playlist = playlists[playlistID];
-    console.log('current course ->', playlist);
+const PlayerPage = () => {
+    const { playlistID } = useParams();
+    const playlist = useStoreState(state => state.playlists.data[playlistID]);
 
     if(!playlist) return;
 
