@@ -34,12 +34,10 @@ const PlaylistDialog = ({ open, handleClose }) => {
                 return alert('Please insert a valid playlist url!');
             }
             savePlaylist({playlistID});
-            addRecents(playlistID);
             setState('');
             handleClose();
         } else {
             savePlaylist({playlistID: state});
-            addRecents(state);
             setState('');
             handleClose();
         }

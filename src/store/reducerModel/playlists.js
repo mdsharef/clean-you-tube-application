@@ -16,13 +16,6 @@ const playlistModel = persist({
     }),
     addPlaylist: action((state, payload) => {
         state.data[payload.playlistID] = payload;
-        // state = {
-        //     ...state,
-        //     data: {
-        //         ...state.data,
-        //         [payload.playlistId]: payload,
-        //     }
-        // }
     }),
     savePlaylist: thunk(async (actions, payload, helpers) => {
 
@@ -43,6 +36,9 @@ const playlistModel = persist({
             actions.setLoading(false);
         }
     }),
+    deletePlaylist: action((state, playlistID) => {
+        delete state.data[playlistID]
+    })
 }, {
     storage: 'localStorage',
     allow: ['data']

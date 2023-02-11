@@ -6,7 +6,7 @@ const recentsModel = persist({
     vanishError: action((state, _payload) => {
         state.error = '';
     }),
-    addRecents: action((state, playlistID) => {
+    addRecent: action((state, playlistID) => {
         if(state.items.includes(playlistID)) {
             state.error = 'Playlist arleady added!';
             return;
@@ -15,6 +15,9 @@ const recentsModel = persist({
         state.items = state.items.slice(0, 8);
         state.error = '';
     }),
+    removeRecent: action((state, playlistID) => {
+        state.items = state.items.filter(item => item !== playlistID);
+    })
 }, {
     storage: 'localStorage',
     allow: ['items']

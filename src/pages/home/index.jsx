@@ -1,43 +1,16 @@
-import { Container, Grid } from "@mui/material"
-import { useStoreState } from "easy-peasy";
-import PlaylistCard from "../../components/playlist-card"
+import { Container } from "@mui/system";
+import Favourite from "../../components/home/favourites";
+import AllPlaylists from "../../components/home/playlists";
+import Recent from "../../components/home/recents";
 
-/**
- * @component ShowPlaylists
- * @example
- * return (<ShowPlaylists playlistsArray={playlistsArray} />);
- * @param {Array} playlistsArray 
- * @returns (<ShowPlaylists playlistsArray={playlistsArray} />)
- */
-const ShowPlaylists = () => {
-    const playlists = useStoreState(state => state.playlists.data);
-    const playlistsArray = Object.values(playlists);
-
+const Home = () => {
     return(
         <Container maxWidth='lg' sx={{ my: 16 }}>
-            {playlistsArray.length > 0 && (
-                <Grid container alignItems='stretch'>
-                    {playlistsArray.map(item => (
-                        <Grid 
-                            key={item.playlistID}
-                            item 
-                            xs={12} 
-                            md={6} 
-                            lg={4} 
-                            mb={2}
-                        >
-                            <PlaylistCard
-                                playlistID={item.playlistID}
-                                playlistThumbnail={item.playlistThumbnail}
-                                channelTitle={item.channelTitle}
-                                playlistTitle={item.playlistTitle}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
-            )}
+            <Favourite />
+            <Recent />
+            <AllPlaylists />
         </Container>
     )
 };
 
-export default ShowPlaylists;
+export default Home;

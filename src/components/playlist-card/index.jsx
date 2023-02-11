@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { useEffect, useState } from 'react';
-import { useStoreActions } from 'easy-peasy';
+import { FaRegHeart, FaHeart, FaTrashAlt, FaRegPlayCircle } from 'react-icons/fa';
+import usePlaylists from '../../hooks/usePlaylists';
 
 /**
  * PlaylistCard Component to show individual playlist
@@ -24,23 +24,11 @@ const PlaylistCard = ({
   playlistID, 
   playlistThumbnail, 
   channelTitle, 
-  playlistTitle 
+  playlistTitle,
+  remove=false,
 }) => {
-  
-  const { addFavourite, removeFavourite } = useStoreActions(actions => actions.favourites);
-  const [isLoved, setIsLoved] = useState(false);
 
-  useEffect(()=> {
-    if(isLoved) {
-      addFavourite(playlistID);
-    } else {
-      removeFavourite(playlistID);
-    }
-  }, [isLoved])
-
-  const handleChange = () => {
-    setIsLoved(!isLoved);
-  }
+  const { isLoved, favouriteToggle, removePlaylist, addRecent } = usePlaylists(playlistID);
 
   return (
     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', margin: 1 }}>
@@ -51,7 +39,7 @@ const PlaylistCard = ({
       />
       <CardContent>
         <Typography variant="h6" color='text.primary'>
-          {playlistTitle.length > 50 ? `${playlistTitle.substr(0, 50)}...` : playlistTitle}
+          {playlistTitle.length > 50 ? `${playlistTitle.substring(0, 50)}...` : playlistTitle}
         </Typography>
         <Typography variant='body2' color="text.secondary">
             {channelTitle}
@@ -59,18 +47,26 @@ const PlaylistCard = ({
       </CardContent>
       <Box sx={{ flexGrow: 1 }}></Box>
       <CardActions disableSpacing>
-        <Button component={Link} to={`/player/${playlistID}`} >
-          <Stack direction='row' spacing={1} alignItems='center'>
+        <Button onClick={() => addRecent(playlistID)} component={Link} to={`/player/${playlistID}`} >
+          <Stack direction='row' display='flex' spacing={0.5} alignItems='center'>
+            <FaRegPlayCircle />
             <Typography variant='body2' color={'primary'} fontWeight={600}>
               Start Tutorial
             </Typography>
           </Stack>
         </Button>
-        <Button onClick={handleChange}>
+        <Button onClick={() => favouriteToggle(playlistID)}>
           <Typography variant='body2' color={'primary'} fontWeight={600}>
-            {isLoved ? 'UnLove' : 'Love'}
+            {isLoved ? <FaHeart style={{color: 'red', fontSize: '14px'}} /> : <FaRegHeart style={{color: 'red', fontSize: '14px'}} />}
           </Typography>
         </Button>
+        {remove && (
+          <Button onClick={() => removePlaylist(playlistID)}>
+            <Typography variant='body2' color={'primary'} fontWeight={600}>
+              <FaTrashAlt style={{ color: 'orange', fontSize: '14px'}} />
+            </Typography>
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
