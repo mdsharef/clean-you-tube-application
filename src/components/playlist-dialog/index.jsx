@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 import { useStoreActions } from "easy-peasy";
+import checkURL from "../../utils/check-url";
 
 /**
  * PlaylistDialog Component to add new playlist.
@@ -19,9 +20,23 @@ const PlaylistDialog = ({ open, handleClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // TODO: handle url
         if(!state) {
-            alert('Please insert a valid playlistID or url');
+            return alert('Please insert a valid playlist id or url');
+        } 
+        
+        if(checkURL(state)) {
+            const url = new URL(state);
+            if(!url.hostname.includes('youtube')) {
+                return alert('Please insert a valid url!');
+            }
+            const playlistID = url.searchParams.get('list');
+            if(!playlistID) {
+                return alert('Please insert a valid playlist url!');
+            }
+            savePlaylist({playlistID});
+            addRecents(playlistID);
+            setState('');
+            handleClose();
         } else {
             savePlaylist({playlistID: state});
             addRecents(state);

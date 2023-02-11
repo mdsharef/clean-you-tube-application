@@ -8,6 +8,9 @@ const favouriteModel = persist({
     removeFavourite: action((state, playlistID) => {
         state.items = state.items.filter(item => item !== playlistID);
     }),
+}, {
+    storage: 'localStorage',
+    allow: ['items']
 });
 
 export default favouriteModel;

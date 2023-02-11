@@ -11,6 +11,9 @@ const playlistModel = persist({
     setError: action((state, payload) => {
         state.error = payload;
     }),
+    vanishError: action((state, _payload) => {
+        state.error = '';
+    }),
     addPlaylist: action((state, payload) => {
         state.data[payload.playlistID] = payload;
         // state = {
@@ -24,6 +27,7 @@ const playlistModel = persist({
     savePlaylist: thunk(async (actions, payload, helpers) => {
 
         if(helpers.getState().data[payload.playlistID] && !payload.refresh) {
+            actions.setError('Playlist already added!')
             return;
         }
         
@@ -39,6 +43,9 @@ const playlistModel = persist({
             actions.setLoading(false);
         }
     }),
+}, {
+    storage: 'localStorage',
+    allow: ['data']
 });
 
 export default playlistModel;
