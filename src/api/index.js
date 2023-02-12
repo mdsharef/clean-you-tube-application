@@ -74,7 +74,8 @@ const getPlaylist = async (playlistID) => {
         channelTitle,
         playlistTitle,
         playlistDescription,
-        playlistThumbnail
+        playlistThumbnail,
+        currentVideoItem: playlistItems[0],
     }
 }
 

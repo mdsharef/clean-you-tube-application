@@ -38,6 +38,9 @@ const playlistModel = persist({
     }),
     deletePlaylist: action((state, playlistID) => {
         delete state.data[playlistID]
+    }),
+    updateCurrentVideoItem: action((state, payload)=> {
+        state.data[payload.playlistID].currentVideoItem = payload.videoItem
     })
 }, {
     storage: 'localStorage',

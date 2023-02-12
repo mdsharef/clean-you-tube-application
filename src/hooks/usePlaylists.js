@@ -28,17 +28,21 @@ const usePlaylists = (playlistID=null) => {
         playlists.deletePlaylist(playlistID);
     }
 
+    const playlistItemsArr = Object.values(playlistItems);
+    const favouriteItemsArr = favouriteItems.map(item => playlistItems[item]);
+    const recentItemsArr = recentItems.map(item => playlistItems[item]);
+
     return {
-        playlists: Object.values(playlistItems),
-        playlistsForHome: Object.values(playlistItems).slice(0, 3),
-        favourites: favouriteItems.map(item => playlistItems[item]),
-        favouritesForHome: favouriteItems.map(item => playlistItems[item]).slice(0, 3),
-        recents: recentItems.map(item => playlistItems[item]),
-        recentsForHome: recentItems.map(item => playlistItems[item]).slice(0, 3),
+        playlists: playlistItemsArr,
+        playlistsForHome: playlistItemsArr.reverse().slice(0, 3),
+        favourites: favouriteItemsArr,
+        favouritesForHome: favouriteItemsArr.reverse().slice(0, 3),
+        recents: recentItemsArr,
+        recentsForHome: recentItemsArr.slice(0, 3),
         favouriteToggle,
         isLoved,
         removePlaylist,
-        addRecent: recents.addRecent
+        addRecent: recents.addRecent,
     }
 }
 

@@ -12,7 +12,7 @@ import Link from "@mui/material/Link";
  */
 const NotFound = () => {
     return (
-        <Container maxWidth='lg' align='center' sx={{ my: 16 }}>
+        <Container maxWidth='lg' align='center' sx={{ my: 14 }}>
             <Box>
                 <Typography variant="h3" color='Highlight'>
                     OPS!

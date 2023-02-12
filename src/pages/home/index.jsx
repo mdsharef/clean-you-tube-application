@@ -5,7 +5,7 @@ import Recent from "../../components/home/recents";
 
 const Home = () => {
     return(
-        <Container maxWidth='lg' sx={{ my: 16 }}>
+        <Container maxWidth='lg' sx={{ my: 14 }}>
             <Favourite />
             <Recent />
             <AllPlaylists />
