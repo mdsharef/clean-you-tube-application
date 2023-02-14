@@ -1,5 +1,6 @@
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link, Typography } from "@mui/material"
+import { Button, Divider, Link, Stack, Typography } from "@mui/material"
 import usePlaylists from "../../hooks/usePlaylists"
 import ShowPlaylists from "../shared/ShowPlaylists"
 
@@ -7,16 +8,24 @@ const Recent = () => {
     const { recentsForHome } = usePlaylists();
 
     return (
-        <div>
-            <Typography variant='h4'>Recent Played Playlists</Typography>
-            <hr />
-            <ShowPlaylists playlists={recentsForHome} term={'recents'} />
-            <Link component={RouterLink} to={`/recents/lists`} sx={{ textDecoration: 'none' }}>
-                <Typography variant='body2' color='text.primary'>
-                    Show all playlists
+        <React.Fragment>
+            <Typography variant='h6'>Recent Played Playlists</Typography>
+            <Divider />
+            <Stack direction='column' spacing={2}>
+                <ShowPlaylists playlists={recentsForHome} term={'recents'} />
+                <Typography variant='body1' color='text.primary' align='right'>
+                    <Button variant='outlined'>
+                        <Link 
+                            component={RouterLink} 
+                            to={`/recents/lists`} 
+                            sx={{ textDecoration: 'none', color: 'text.secondary' }}
+                        >
+                            Show all playlists
+                        </Link>
+                    </Button>
                 </Typography>
-            </Link>
-        </div>
+            </Stack>
+        </React.Fragment>
     )
 };
 

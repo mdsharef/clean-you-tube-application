@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useParams } from "react-router-dom";
 import VideoList from "../../components/player/video-list";
@@ -19,26 +19,17 @@ const PlayerPage = () => {
         updateCurrentVideoItem({playlistID, videoItem: item});
     }
 
-    console.log(playlist);
     if(!playlist) return;
 
     return (
-        <Container 
-            maxWidth='lg' 
-            sx={{ 
-                my: 14,
-                display: 'grid',
-                gridTemplateColumns: '73% 27%',
-                gap: '1rem'
-            }}
-        >
-            <Box>
+        <Grid container sx={{ my: 10}} spacing={1.5}>
+            <Grid item sm={12} md={8.5}>
                 <VideoPlayer playlist={playlist}/>
-            </Box>
-            <Box>
+            </Grid>
+            <Grid item sm={12} md={3.5}>
                 <VideoList playlist={playlist} handleVideo={handleVideo}/>
-            </Box>
-        </Container>
+            </Grid>
+        </Grid>
     )
 };
 

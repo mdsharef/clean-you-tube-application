@@ -1,14 +1,14 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Divider, Typography } from "@mui/material";
+import ShowPlaylists from "../../components/shared/ShowPlaylists";
 import usePlaylists from "../../hooks/usePlaylists";
-import ShowPlaylists from "../shared/ShowPlaylists";
 
 const Favourites = () => {
     const { favourites } = usePlaylists();
 
     return (
-        <Container maxWidth='lg' sx={{my: 16}}>
+        <Container maxWidth='lg' sx={{my: 12}}>
             <Typography variant='h5'>Favourite Playlists</Typography>
-            <hr />
+            <Divider />
             <ShowPlaylists playlists={favourites} />
         </Container>
     )

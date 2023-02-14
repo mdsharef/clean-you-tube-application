@@ -4,11 +4,14 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { FaRegHeart, FaHeart, FaTrashAlt, FaRegPlayCircle } from 'react-icons/fa';
+import { FaRegHeart, FaHeart, FaRegPlayCircle } from 'react-icons/fa';
+import { MdDelete, MdExpandMore } from 'react-icons/md';
 import usePlaylists from '../../hooks/usePlaylists';
+import { CardHeader, Collapse, IconButton } from '@mui/material';
+import { useState } from 'react';
+import ExpandMore from '../shared/ExpandMore';
 
 /**
  * PlaylistCard Component to show individual playlist
@@ -20,33 +23,84 @@ import usePlaylists from '../../hooks/usePlaylists';
  * @param {{playlistThumbnail: object, channelTitle: string, playlistTitle: string}} params [options]
  * @returns <PlaylistCard options={params}/>
  */
-const PlaylistCard = ({ 
-  playlistID, 
-  playlistThumbnail, 
-  channelTitle, 
-  playlistTitle,
-  remove=false,
-}) => {
+const PlaylistCard = ({ playlistID, playlist, remove=false }) => {
 
   const { isLoved, favouriteToggle, removePlaylist, addRecent } = usePlaylists(playlistID);
 
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', margin: 1 }}>
+    <Card sx={{mt: 1}}>
       <CardMedia
         component="img"
-        image={playlistThumbnail.url}
-        alt={playlistTitle}
+        height= "195"
+        image={playlist.playlistThumbnail.url}
+        alt={playlist.playlistTitle}
       />
-      <CardContent>
-        <Typography variant="h6" color='text.primary'>
-          {playlistTitle.length > 50 ? `${playlistTitle.substring(0, 50)}...` : playlistTitle}
-        </Typography>
-        <Typography variant='body2' color="text.secondary">
-            {channelTitle}
-        </Typography>
+      <CardHeader 
+        action={
+          <IconButton 
+            onClick={() => favouriteToggle(playlistID)}
+            color='primary' 
+            sx={{alignSelf: 'center'}}
+          >
+            {isLoved ? <FaHeart /> : <FaRegHeart />}
+          </IconButton>
+        }
+        title={
+          <Typography 
+            variant="h6" 
+            color='text.primary'
+            sx={{fontSize: '16px'}}
+          >
+            {playlist.playlistTitle.length > 32 ? `${playlist.playlistTitle.substring(0, 32)}...` : playlist.playlistTitle}
+          </Typography>
+        }
+        subheader={
+          <Typography 
+            variant='body1' 
+            color="text.secondary"
+            sx={{fontSize: '14px', letterSpacing: 1.5, mt: '3px', cursor: 'pointer'}}
+          >
+            {playlist.channelTitle}
+          </Typography>
+        }
+      />
+      <CardContent sx={{ pb: 0, pt: 0}}>
+        <Stack direction='row' alignItems='center' justifyContent='space-between'>
+          <Typography variant="body2" color='text.primary'>
+            Details of the playlist
+          </Typography>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <MdExpandMore />
+          </ExpandMore>
+        </Stack>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <Typography variant='subtitle2' color='text.primary'>
+            {playlist.playlistTitle}
+          </Typography>
+          <Typography 
+            variant='body1' 
+            color="text.secondary"
+            sx={{fontSize: '14px', letterSpacing: 1.5, mt: '3px', cursor: 'pointer'}}
+          >
+            {playlist.channelTitle}
+          </Typography>
+          <Typography variant='body1'>
+            {playlist.playlistDescription}
+          </Typography>
+        </Collapse>
       </CardContent>
-      <Box sx={{ flexGrow: 1 }}></Box>
-      <CardActions disableSpacing>
+      <CardActions sx={{justifyContent: 'space-between'}}>
         <Button onClick={() => addRecent(playlistID)} component={Link} to={`/player/${playlistID}`} >
           <Stack direction='row' display='flex' spacing={0.5} alignItems='center'>
             <FaRegPlayCircle />
@@ -55,15 +109,10 @@ const PlaylistCard = ({
             </Typography>
           </Stack>
         </Button>
-        <Button onClick={() => favouriteToggle(playlistID)}>
-          <Typography variant='body2' color={'primary'} fontWeight={600}>
-            {isLoved ? <FaHeart style={{color: 'red', fontSize: '14px'}} /> : <FaRegHeart style={{color: 'red', fontSize: '14px'}} />}
-          </Typography>
-        </Button>
         {remove && (
           <Button onClick={() => removePlaylist(playlistID)}>
             <Typography variant='body2' color={'primary'} fontWeight={600}>
-              <FaTrashAlt style={{ color: 'orange', fontSize: '14px'}} />
+              <MdDelete style={{ color: 'orange', fontSize: '22px'}} />
             </Typography>
           </Button>
         )}

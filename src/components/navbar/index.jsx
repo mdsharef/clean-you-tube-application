@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { AppBar, Button, Link, Stack, Toolbar, Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
+import { AppBar, Button, Toolbar } from "@mui/material";
+import { Box } from "@mui/system";
 import PlaylistDialog from "../playlist-dialog";
+import LeftPart from "./LeftPart";
+import RightPart from "./RightPart";
+
 
 /**
  * Navbar Component to display the header. This component contains logo and addPlaylist button.
@@ -26,25 +28,13 @@ const Navbar = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" color="default" sx={{ py: 2 }}>
-                <Container maxWidth='lg'>
+            <AppBar position="fixed" color="default" sx={{ py: 1 }}>
                     <Toolbar>
-                        <Stack sx={{ flexGrow: 1 }}>
-                            <Link component={RouterLink} to='/' sx={{ textDecoration: 'none' }}>
-                                <Typography variant='h4' color='text.primary'>
-                                    Clean YouTube
-                                </Typography>
-                            </Link>
-                            <Link href="https://github.com/mdsharef" target="_blank" sx={{ textDecoration: 'none' }}>
-                                <Typography variant='body1' color='text.secondary'>
-                                    By Adda
-                                </Typography>
-                            </Link>
-                        </Stack>
+                        <LeftPart />
+                        <RightPart />
                         <Button variant="contained" onClick={handleClickOpen}>Add Playlist</Button>
                         <PlaylistDialog open={open} handleClose={handleClose} />
                     </Toolbar>
-                </Container>
             </AppBar>
         </Box>
     )

@@ -18,7 +18,12 @@ const VideoItem = ({ index, videoItem, channelTitle, handleVideo }) => {
                     display: 'flex',
                 }}
             >
-                <Typography variant="h6" component='div' alignSelf='center'>
+                <Typography 
+                    variant="h6" 
+                    component='div' 
+                    alignSelf='center'
+                    sx={{fontSize: '16px'}}
+                >
                     {index}
                 </Typography>
                 <CardMedia 
@@ -26,16 +31,19 @@ const VideoItem = ({ index, videoItem, channelTitle, handleVideo }) => {
                     image={videoItem.thumbnail.url}
                     sx={{ width: '15px', height: '100%' }}
                 />
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <CardContent sx={{ flex: '1 0 auto' }}>
-                        <Typography component="div" variant="h6">
-                            {videoItem.title}
-                        </Typography>
-                        <Typography variant="subtitle1" color="text.secondary" component="div">
-                            {channelTitle}
-                        </Typography>
-                    </CardContent>
-                </Box>
+                <CardContent>
+                    <Typography component="div" variant="subtitle2">
+                        {videoItem.title}
+                    </Typography>
+                    <Typography 
+                        variant="body2" 
+                        color="text.secondary" 
+                        component="div"
+                        sx={{letterSpacing: 1.3}}
+                    >
+                        {channelTitle}
+                    </Typography>
+                </CardContent>
             </Card>
         </Box>
     )

@@ -14,7 +14,7 @@ import checkURL from "../../utils/check-url";
  * @returns <PlaylistDialog props={"*"} />
  */
 const PlaylistDialog = ({ open, handleClose }) => {
-    const { playlists: { savePlaylist }, recents: { addRecents } } = useStoreActions(actions => actions);
+    const { playlists: { savePlaylist } } = useStoreActions(actions => actions);
 
     const [state, setState] = useState('');
 

@@ -8,8 +8,14 @@ const VideoList = ({ playlist, handleVideo }) => {
         <Card>
             <CardContent>
                 <Stack>
-                    <Typography variant='h6'>{playlist.playlistTitle}</Typography>
-                    <Typography variant='body1' color='text.secondary'>
+                    <Typography variant='h6' sx={{fontSize: '18px'}}>
+                        {playlist.playlistTitle}
+                    </Typography>
+                    <Typography 
+                        variant='body1' 
+                        color='text.secondary'
+                        sx={{fontSize: '16px', letterSpacing: 1.5, cursor: 'pointer'}}
+                    >
                         {playlist.channelTitle} - current video/{playlist.playlistItems.length}
                     </Typography>
                 </Stack>

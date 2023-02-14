@@ -3,9 +3,9 @@ import PlaylistCard from "../playlist-card";
 
 const ShowPlaylists = ({ playlists, remove=false }) => {
     return (
-        <Container maxWidth='lg' sx={{ mb: 14 }}>
+        <Container maxWidth='lg'>
             {playlists.length > 0 && (
-                <Grid container alignItems='stretch'>
+                <Grid container alignItems='stretch' spacing={2}>
                     {playlists.map(item => (
                         <Grid 
                             key={item.playlistID}
@@ -17,9 +17,7 @@ const ShowPlaylists = ({ playlists, remove=false }) => {
                         >
                             <PlaylistCard
                                 playlistID={item.playlistID}
-                                playlistThumbnail={item.playlistThumbnail}
-                                channelTitle={item.channelTitle}
-                                playlistTitle={item.playlistTitle}
+                                playlist={item}
                                 remove={remove}
                             />
                         </Grid>
