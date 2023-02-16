@@ -110,11 +110,12 @@ const PlaylistCard = ({ playlistID, playlist, remove=false }) => {
           </Stack>
         </Button>
         {remove && (
-          <Button onClick={() => removePlaylist(playlistID)}>
-            <Typography variant='body2' color={'primary'} fontWeight={600}>
-              <MdDelete style={{ color: 'orange', fontSize: '22px'}} />
-            </Typography>
-          </Button>
+          <IconButton 
+            color='warning'
+            onClick={() => removePlaylist(playlistID)}
+          >
+            <MdDelete />
+          </IconButton>
         )}
       </CardActions>
     </Card>

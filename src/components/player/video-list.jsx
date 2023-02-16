@@ -4,6 +4,8 @@ import VideoItem from "./video-item";
 const VideoList = ({ playlist, handleVideo }) => {
     if(!playlist) return;
 
+    const currentVideo = playlist.playlistItems.findIndex(item => JSON.stringify(item) === JSON.stringify(playlist.currentVideoItem));
+
     return (
         <Card>
             <CardContent>
@@ -16,7 +18,7 @@ const VideoList = ({ playlist, handleVideo }) => {
                         color='text.secondary'
                         sx={{fontSize: '16px', letterSpacing: 1.5, cursor: 'pointer'}}
                     >
-                        {playlist.channelTitle} - current video/{playlist.playlistItems.length}
+                        {playlist.channelTitle} - {currentVideo + 1}/{playlist.playlistItems.length}
                     </Typography>
                 </Stack>
                 <Box 
@@ -32,11 +34,12 @@ const VideoList = ({ playlist, handleVideo }) => {
                 >
                     {playlist.playlistItems.map((item, index) => (
                         <VideoItem 
-                            key={item.contentDetails.videoId} 
+                            key={`${item.contentDetails.videoId}-${Math.round(Math.random() * index)}`} 
                             index={index + 1}
                             videoItem={item}
                             channelTitle={playlist.channelTitle}
                             handleVideo={handleVideo}
+                            isActive={currentVideo === index}
                         />
                     ))}
                 </Box>

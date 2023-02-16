@@ -1,22 +1,15 @@
 import { Button, Card, CardContent, CardMedia, Collapse, Stack, Typography } from "@mui/material";
-import { useStoreActions } from "easy-peasy";
 import { useState } from "react";
 import { MdExpandMore } from "react-icons/md";
 import YouTube from "react-youtube";
 import ExpandMore from "../shared/ExpandMore";
-import NoteDialog from "../ui/NoteDialog";
+import NoteDrawer from "./NoteDrawer";
 
 const VideoPlayer = ({ playlist }) => {
     
     const {playlistTitle, channelTitle, currentVideoItem: videoItem} = playlist;
 
     const [expanded, setExpanded] = useState(false);
-
-
-
-    ///** */
-    const {createNote} = useStoreActions(actions => actions.notes)
-    const [state, setState] = useState({videoId: '', text: '', videoTime: ''});
     const [open, setOpen] = useState(false);
 
     const handleOpenClick = () => {
@@ -25,26 +18,14 @@ const VideoPlayer = ({ playlist }) => {
     const handleClose = () => {
         setOpen(false);
     }
-    const handleChange = (e) => {
-        setState((prev) => ({
-            ...prev,
-             [e.target.name]: e.target.value,
-        }));
-    }
-
-    const handleSubmit = (e, videoId) => {
-        e.preventDefault();
-        state.videoId = videoItem.contentDetails.videoId;
-        createNote(state);
-        handleClose();
-    }
-    ///** */
-
-
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const onPlayerReady = (event) => {
+        event.target.pauseVideo();
+    }
 
     const opts = {
         height: '520',
@@ -61,6 +42,7 @@ const VideoPlayer = ({ playlist }) => {
                     videoId={videoItem.contentDetails.videoId} 
                     opts={opts} 
                     title={videoItem.title}
+                    onReady={onPlayerReady}
                 />
             </CardMedia>
             <CardContent>
@@ -124,11 +106,7 @@ const VideoPlayer = ({ playlist }) => {
                         {videoItem.description}
                     </Typography>
                 </Collapse>
-
-                {/* notes */}
-                <NoteDialog open={open} handleChange={handleChange} handleClose={handleClose} handleSubmit={handleSubmit} />
-                {/* notes */}
-
+                <NoteDrawer open={open} handleClose={handleClose} videoId={videoItem.contentDetails.videoId} />
             </CardContent>
         </Card>
     )

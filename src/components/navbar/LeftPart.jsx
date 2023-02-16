@@ -1,9 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Link, Stack, Typography } from "@mui/material";
-import { FaSearch, FaYoutube } from 'react-icons/fa';
-import Search from './Search';
-import SearchIconWrapper from './SearchIconWrapper';
-import StyledInputBase from './StyledInputBase';
+import { FaYoutube } from 'react-icons/fa';
+import SearchInput from './SearchInput';
 
 const LeftPart = () => {
     return (
@@ -35,15 +33,7 @@ const LeftPart = () => {
                     </Link>
                 </Typography>
             </Stack>
-            <Search>
-                <SearchIconWrapper>
-                    <FaSearch />
-                </SearchIconWrapper>
-                <StyledInputBase
-                    placeholder="Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                />
-            </Search>
+            <SearchInput />
         </Stack>
     )
 };
