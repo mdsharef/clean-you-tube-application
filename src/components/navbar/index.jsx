@@ -4,6 +4,8 @@ import { Box } from "@mui/system";
 import PlaylistDialog from "../playlist-dialog";
 import LeftPart from "./LeftPart";
 import RightPart from "./RightPart";
+import useError from "../../hooks/useError";
+import ErrorMsg from "../ui/ErrorMsg";
 
 
 /**
@@ -16,6 +18,7 @@ import RightPart from "./RightPart";
  * @returns <Navbar />
  */
 const Navbar = () => {
+    const { snack, handleSnackClose, handleSnackOpen } = useError()
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -33,9 +36,19 @@ const Navbar = () => {
                         <LeftPart />
                         <RightPart />
                         <Button variant="contained" onClick={handleClickOpen}>Add Playlist</Button>
-                        <PlaylistDialog open={open} handleClose={handleClose} />
+                        <PlaylistDialog 
+                            open={open} 
+                            handleClose={handleClose} 
+                            handleSnackOpen={handleSnackOpen}
+                        />
                     </Toolbar>
             </AppBar>
+            <ErrorMsg 
+                open={snack.open}
+                handleClose={handleSnackClose}
+                message={snack.message}
+                severity={snack.severity}
+            />
         </Box>
     )
 };

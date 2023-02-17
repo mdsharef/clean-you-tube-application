@@ -8,30 +8,30 @@ import checkURL from "../../utils/check-url";
  * @component
  * @example 
  * return (
- *  <PlaylistDialog open={open} handleClose={handleClose} getPlaylist={getPlaylist} />
+ *  <PlaylistDialog open={open} handleClose={handleClose} handleSnackOpen={getPlaylist} />
  * )
- * @param {{open: boolean, handleClose: function, getPlaylist: function}} props props passed to the PlaylsitDialog Component.
+ * @param {{open: boolean, handleClose: function, handleSnackOpen: function}} props props passed to the PlaylsitDialog Component.
  * @returns <PlaylistDialog props={"*"} />
  */
-const PlaylistDialog = ({ open, handleClose }) => {
-    const { playlists: { savePlaylist } } = useStoreActions(actions => actions);
+const PlaylistDialog = ({ open, handleClose, handleSnackOpen }) => {
+    const { playlists: { savePlaylist, setError } } = useStoreActions(actions => actions);
 
     const [state, setState] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if(!state) {
-            return alert('Please insert a valid playlist id or url');
+            return setError('Please insert a valid playlist id or url');
         } 
         
         if(checkURL(state)) {
             const url = new URL(state);
             if(!url.hostname.includes('youtube')) {
-                return alert('Please insert a valid url!');
+                return setError('Please insert a valid url!');
             }
             const playlistID = url.searchParams.get('list');
             if(!playlistID) {
-                return alert('Please insert a valid playlist url!');
+                return setError('Please insert a valid playlist url!');
             }
             savePlaylist({playlistID});
             setState('');
@@ -40,6 +40,11 @@ const PlaylistDialog = ({ open, handleClose }) => {
             savePlaylist({playlistID: state});
             setState('');
             handleClose();
+            handleSnackOpen({
+                open: true,
+                message: 'Playlist added successfully!',
+                severity: 'success'
+            });
         }
     }
 

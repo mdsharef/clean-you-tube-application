@@ -1,7 +1,11 @@
-import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Stack, Typography } from "@mui/material";
+import { useStoreActions } from "easy-peasy";
+import { MdRefresh } from 'react-icons/md';
 import VideoItem from "./video-item";
 
 const VideoList = ({ playlist, handleVideo }) => {
+    const { savePlaylist } = useStoreActions(actions => actions.playlists)
+
     if(!playlist) return;
 
     const currentVideo = playlist.playlistItems.findIndex(item => JSON.stringify(item) === JSON.stringify(playlist.currentVideoItem));
@@ -20,6 +24,14 @@ const VideoList = ({ playlist, handleVideo }) => {
                     >
                         {playlist.channelTitle} - {currentVideo + 1}/{playlist.playlistItems.length}
                     </Typography>
+                    <Button 
+                        variant="contained" 
+                        size='small' 
+                        startIcon={<MdRefresh />}
+                        onClick={() => savePlaylist({playlistID: playlist.playlistID, refresh: true})}
+                    >
+                        Refresh
+                    </Button>
                 </Stack>
                 <Box 
                     sx={{

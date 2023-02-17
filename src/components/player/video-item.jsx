@@ -30,7 +30,7 @@ const VideoItem = ({ index, videoItem, channelTitle, handleVideo, isActive=false
                 </Typography>
                 <CardMedia 
                     component='img'
-                    image={videoItem.thumbnail.url}
+                    image={videoItem.thumbnail.url ?? ''}
                     sx={{ width: '15px', height: '100%' }}
                 />
                 <CardContent>

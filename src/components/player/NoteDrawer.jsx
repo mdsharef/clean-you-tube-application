@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { Box, Button, Card, CardContent, Divider, Drawer, Stack, TextField, Typography } from "@mui/material";
+import useNoteError from "../../hooks/useNoteError";
+import ErrorMsg from "../ui/ErrorMsg";
 
 const NoteDrawer = ({ open, handleClose, videoId }) => {
-    const {createNote} = useStoreActions(actions => actions.notes);
+    const {createNote, setError} = useStoreActions(actions => actions.notes);
     let {data: notes} = useStoreState(state => state.notes);
+
+    const { snack, handleSnackClose, handleSnackOpen } = useNoteError();
 
     const [state, setState] = useState('');
 
@@ -22,7 +26,7 @@ const NoteDrawer = ({ open, handleClose, videoId }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
     
-        if(!state) return
+        if(!state) return setError('Note Feild can not empty!');
 
         const payload = {
             videoId: videoId,
@@ -32,6 +36,11 @@ const NoteDrawer = ({ open, handleClose, videoId }) => {
 
         createNote(payload);
         setState('');
+        handleSnackOpen({
+            open: true,
+            message: 'Note created successfully!',
+            severity: 'success'
+        });
     }
 
     return (
@@ -75,6 +84,12 @@ const NoteDrawer = ({ open, handleClose, videoId }) => {
                         ))
                     }
                 </Box>
+                <ErrorMsg 
+                    open={snack.open}
+                    message={snack.message}
+                    severity={snack.severity}
+                    handleClose={handleSnackClose}
+                />
             </Stack>
         </Drawer>
     )
