@@ -33,6 +33,13 @@ const PlaylistCard = ({ playlistID, playlist, remove=false }) => {
     setExpanded(!expanded);
   };
 
+  const handleDelete = () => {
+    const isConfirmed = confirm('Press okk to delete the playlist');
+    if(!isConfirmed) return;
+
+    removePlaylist(playlistID);
+  }
+
   return (
     <Card sx={{mt: 1}}>
       <CardMedia
@@ -112,7 +119,7 @@ const PlaylistCard = ({ playlistID, playlist, remove=false }) => {
         {remove && (
           <IconButton 
             color='warning'
-            onClick={() => removePlaylist(playlistID)}
+            onClick={handleDelete}
           >
             <MdDelete />
           </IconButton>

@@ -3,12 +3,10 @@ import { useStoreActions } from "easy-peasy";
 import { MdRefresh } from 'react-icons/md';
 import VideoItem from "./video-item";
 
-const VideoList = ({ playlist, handleVideo }) => {
+const VideoList = ({ playlist, handleVideo, currentVideo }) => {
     const { savePlaylist } = useStoreActions(actions => actions.playlists)
 
     if(!playlist) return;
-
-    const currentVideo = playlist.playlistItems.findIndex(item => JSON.stringify(item) === JSON.stringify(playlist.currentVideoItem));
 
     return (
         <Card>

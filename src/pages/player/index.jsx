@@ -16,18 +16,32 @@ const PlayerPage = () => {
     const { updateCurrentVideoItem } = useStoreActions(actions => actions.playlists)
 
     const handleVideo = (item) => {
+        const isExisted = playlist.playlistItems.find(playlist => JSON.stringify(playlist) === JSON.stringify(item));
+        
+        if(!isExisted) return;
+
         updateCurrentVideoItem({playlistID, videoItem: item});
     }
+
+    const currentVideo = playlist.playlistItems.findIndex(item => JSON.stringify(item) === JSON.stringify(playlist.currentVideoItem));
 
     if(!playlist) return;
 
     return (
         <Grid container sx={{ my: 10}} spacing={1.5}>
             <Grid item sm={12} md={8.5}>
-                <VideoPlayer playlist={playlist}/>
+                <VideoPlayer 
+                    playlist={playlist}
+                    handleVideo={handleVideo}
+                    currentVideo={currentVideo}
+                />
             </Grid>
             <Grid item sm={12} md={3.5}>
-                <VideoList playlist={playlist} handleVideo={handleVideo}/>
+                <VideoList 
+                    playlist={playlist} 
+                    handleVideo={handleVideo} 
+                    currentVideo={currentVideo} 
+                />
             </Grid>
         </Grid>
     )

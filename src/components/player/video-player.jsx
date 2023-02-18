@@ -1,13 +1,13 @@
-import { Button, Card, CardContent, CardMedia, Collapse, Stack, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, Collapse, IconButton, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import { MdExpandMore } from "react-icons/md";
+import { MdExpandMore, MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import YouTube from "react-youtube";
 import ExpandMore from "../shared/ExpandMore";
 import NoteDrawer from "./NoteDrawer";
 
-const VideoPlayer = ({ playlist }) => {
+const VideoPlayer = ({ playlist, handleVideo, currentVideo }) => {
     
-    const {playlistTitle, channelTitle, currentVideoItem: videoItem} = playlist;
+    const {playlistTitle, channelTitle, currentVideoItem: videoItem, playlistItems} = playlist;
 
     const [expanded, setExpanded] = useState(false);
     const [open, setOpen] = useState(false);
@@ -45,7 +45,32 @@ const VideoPlayer = ({ playlist }) => {
                     onReady={onPlayerReady}
                 />
             </CardMedia>
-            <CardContent>
+            <CardActions disableSpacing>
+                <Stack 
+                    direction='row' 
+                    justifyContent='space-between' 
+                    component='div' 
+                    sx={{width: '100%'}}
+                >
+                    <IconButton 
+                        color='secondary' 
+                        sx={{border: '1px solid #333', marginLeft: '8px'}}
+                        disabled={currentVideo <= 0}
+                        onClick={() => handleVideo(playlistItems[currentVideo - 1])}
+                    >
+                        <MdNavigateBefore />
+                    </IconButton>
+                    <IconButton 
+                        color='secondary'
+                        sx={{border: '1px solid #333', marginRight: '8px'}}
+                        disabled={currentVideo >= playlistItems.length - 1}
+                        onClick={() => handleVideo(playlistItems[currentVideo + 1])}
+                    >
+                        <MdNavigateNext />
+                    </IconButton>
+                </Stack>
+            </CardActions>
+            <CardContent sx={{paddingTop: '0px'}}>
                 <Typography component='div' variant="body2" color='primary'>
                     {playlistTitle}
                 </Typography>

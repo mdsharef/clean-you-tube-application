@@ -31,7 +31,7 @@ const NoteDrawer = ({ open, handleClose, videoId }) => {
         const payload = {
             videoId: videoId,
             text: state,
-            videoTime: new Date().getMinutes()
+            videoTime: new Date().toLocaleString(),
         }
 
         createNote(payload);
@@ -73,10 +73,22 @@ const NoteDrawer = ({ open, handleClose, videoId }) => {
                         notes.map(item => (
                             <Card key={item.id}>
                                 <CardContent>
-                                    <Typography component='div' variant='body1' color='secondary' align='right'>
+                                    <Typography 
+                                        component='div' 
+                                        variant='body2' 
+                                        color='text.secondary' 
+                                        align='right'
+                                        fontStyle='italic'
+                                        sx={{letterSpacing: 1.2, textDecoration: 'underline'}}
+                                    >
                                        Note taken at - {item.videoTime}  minutes
                                     </Typography>
-                                    <Typography component='div' variant='body2' color='text.secondary' sx={{letterSpacing: 1.2}}>
+                                    <Typography 
+                                        component='div' 
+                                        variant='body1' 
+                                        color='text.primary' 
+                                        sx={{letterSpacing: 1.1, marginTop: '15px'}}
+                                    >
                                         {item.text}
                                     </Typography>
                                 </CardContent>
