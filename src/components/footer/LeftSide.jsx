@@ -12,7 +12,7 @@ const initValue = {
 const openInit = {
     value: false,
     message: '',
-    severity: ''
+    severity: 'success'
 }
 
 const LeftSide = () => {
