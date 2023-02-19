@@ -23,13 +23,13 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
     "react-youtube": "^10.1.0",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
-    "better-docs": "^2.7.2",
     "vite": "^4.0.0"
   }
 }

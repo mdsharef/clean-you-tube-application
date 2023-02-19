@@ -1,8 +1,9 @@
 import { action, persist } from "easy-peasy";
-import generateID from "../../utils/generateID";
+import shortid from "shortid";
+// import generateID from "../../utils/generateID";
 
 
-const getID = generateID('notes');
+// const getID = generateID('notes');
 
 const notesModel = persist({
     data: {},
@@ -14,7 +15,7 @@ const notesModel = persist({
         state.error = '';
     }),
     createNote: action((state, payload) => {
-        let noteId = getID.next().value;
+        let noteId = shortid.generate();
         state.data[`${payload.videoId}|${noteId}`] = {
             id: noteId,
             videoId: payload.videoId,
