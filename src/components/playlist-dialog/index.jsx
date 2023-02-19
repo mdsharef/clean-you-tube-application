@@ -36,6 +36,11 @@ const PlaylistDialog = ({ open, handleClose, handleSnackOpen }) => {
             savePlaylist({playlistID});
             setState('');
             handleClose();
+            handleSnackOpen({
+                open: true,
+                message: 'Playlist added successfully!',
+                severity: 'success'
+            });
         } else {
             savePlaylist({playlistID: state});
             setState('');

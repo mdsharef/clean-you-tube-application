@@ -6,9 +6,10 @@ const BottomSide = () => {
     return (
         <Stack 
             direction='row' 
+            flexWrap='wrap-reverse'
             justifyContent='center'
             alignItems='center'
-            sx={{width: '100%'}}
+            sx={{width: '100%'}}    
         >
             <Typography 
                 component='div' 

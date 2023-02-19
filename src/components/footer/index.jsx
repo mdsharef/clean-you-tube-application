@@ -9,11 +9,25 @@ const Footer = () => {
             <Grid item xs={12}>
                 <Divider />
             </Grid>
-            <Grid item container xs={12} m={5} alignItems='stretch'>
-                <Grid item xs={12} md={6}>
+            <Grid item container xs={12} m={5} alignItems='stretch' spacing={3}>
+                <Grid 
+                    item
+                    display='flex' 
+                    justifyContent='center'
+                    alignItems='center'
+                    xs={12} 
+                    md={6}
+                >
                     <LeftSide />
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid 
+                    item
+                    display='flex' 
+                    justifyContent='center'
+                    alignItems='center'
+                    xs={12} 
+                    md={6}
+                >
                     <RightSide />
                 </Grid>
             </Grid>
