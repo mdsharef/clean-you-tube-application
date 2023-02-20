@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { useStoreActions, useStoreState } from "easy-peasy";
 import { useParams } from "react-router-dom";
 import VideoList from "../../components/player/video-list";
@@ -13,7 +13,10 @@ const PlayerPage = () => {
     const { playlistID } = useParams();
     
     const playlist = useStoreState(state => state.playlists.data[playlistID]);
-    const { updateCurrentVideoItem } = useStoreActions(actions => actions.playlists)
+    const { updateCurrentVideoItem } = useStoreActions(actions => actions.playlists);
+
+    const theme = useTheme();
+    const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
     const handleVideo = (item) => {
         const isExisted = playlist.playlistItems.find(playlist => JSON.stringify(playlist) === JSON.stringify(item));
@@ -28,12 +31,13 @@ const PlayerPage = () => {
     if(!playlist) return;
 
     return (
-        <Grid container sx={{ my: 10}} spacing={1.5}>
+        <Grid container sx={{ my: isMatch ? 7.3 : 10}} spacing={1.5}>
             <Grid item sm={12} md={8.5}>
                 <VideoPlayer 
                     playlist={playlist}
                     handleVideo={handleVideo}
                     currentVideo={currentVideo}
+                    isMatch={isMatch}
                 />
             </Grid>
             <Grid item sm={12} md={3.5}>

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { AppBar, Button, Toolbar } from "@mui/material";
+import { AppBar, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import { Box } from "@mui/system";
-import PlaylistDialog from "../playlist-dialog";
 import LeftPart from "./LeftPart";
 import RightPart from "./RightPart";
 import useError from "../../hooks/useError";
 import ErrorMsg from "../ui/ErrorMsg";
+import AddPlaylistBtn from "./AddPlaylistBtn";
+import MobileAppbar from "./MobileAppbar";
 
 
 /**
@@ -19,28 +19,23 @@ import ErrorMsg from "../ui/ErrorMsg";
  */
 const Navbar = () => {
     const { snack, handleSnackClose, handleSnackOpen } = useError()
-    const [open, setOpen] = useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+    const theme = useTheme();
+    const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box>
             <AppBar position="fixed" color="default" sx={{ py: 1 }}>
                     <Toolbar>
-                        <LeftPart />
-                        <RightPart />
-                        <Button variant="contained" onClick={handleClickOpen}>Add Playlist</Button>
-                        <PlaylistDialog 
-                            open={open} 
-                            handleClose={handleClose} 
-                            handleSnackOpen={handleSnackOpen}
-                        />
+                        {isMatch ? (
+                            <MobileAppbar handleSnackOpen={handleSnackOpen} />
+                        ) : (
+                            <>
+                                <LeftPart />
+                                <RightPart />
+                                <AddPlaylistBtn handleSnackOpen={handleSnackOpen} />
+                            </>
+                        )}
                     </Toolbar>
             </AppBar>
             <ErrorMsg 

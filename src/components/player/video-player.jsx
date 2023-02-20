@@ -5,7 +5,7 @@ import YouTube from "react-youtube";
 import ExpandMore from "../shared/ExpandMore";
 import NoteDrawer from "./NoteDrawer";
 
-const VideoPlayer = ({ playlist, handleVideo, currentVideo }) => {
+const VideoPlayer = ({ playlist, handleVideo, currentVideo, isMatch }) => {
     
     const {playlistTitle, channelTitle, currentVideoItem: videoItem, playlistItems} = playlist;
 
@@ -28,7 +28,7 @@ const VideoPlayer = ({ playlist, handleVideo, currentVideo }) => {
     }
 
     const opts = {
-        height: '520',
+        height: isMatch ? '350' : '520',
         width: '100%',
         playerVars: {
             autoplay: 1
